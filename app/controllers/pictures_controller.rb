@@ -1,5 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: %i[ show edit update destroy ]
+  before_action :ensure_correct_user, only: %i[ edit destroy ]
 
   # GET /pictures or /pictures.json
   def index
@@ -21,7 +22,8 @@ class PicturesController < ApplicationController
 
   # POST /pictures or /pictures.json
   def create
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
+  
 
     respond_to do |format|
       if @picture.save
@@ -32,6 +34,11 @@ class PicturesController < ApplicationController
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def confirm
+    @picture = current_user.pictures.build(picture_params)
+    render :new if @picture.invalid?
   end
 
   # PATCH/PUT /pictures/1 or /pictures/1.json
@@ -52,7 +59,7 @@ class PicturesController < ApplicationController
     @picture.destroy
 
     respond_to do |format|
-      format.html { redirect_to pictures_url, notice: "Picture was successfully destroyed." }
+      format.html { redirect_to pictures_url, notice: "投稿を削除しました" }
       format.json { head :no_content }
     end
   end
@@ -67,4 +74,12 @@ class PicturesController < ApplicationController
     def picture_params
       params.require(:picture).permit(:title, :content, :image, :user_id)
     end
+
+    def ensure_correct_user
+      @picture = Picture.find(params[:id])
+      unless @picture.user == current_user
+        redirect_to pictures_path
+      end
+    end
+
 end
