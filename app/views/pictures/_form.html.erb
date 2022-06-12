@@ -11,21 +11,23 @@
     </div>
   <% end %>
 
-  <div class="actions my-2">
-  <select class="form-select" aria-label="Default select example">
-    <option selected>お気に入りジャンル</option>
-    <option value="1">旅行</option>
-    <option value="2">グルメ</option>
-    <option value="3">映画・ドラマ</option>
-    <option value="4">ミュージック</option>
-    <option value="5">アニメ</option>
-    <option value="6">漫画</option>
-    <option value="7">ゲーム</option>
-    <option value="8">服</option>
-    <option value="9">本</option>
-  </select>
+  <div class="field">
+    <%= form.label :お気に入りジャンル %>
+    <%= form.hidden_field :category %>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>選択</option>
+      <option value="1">旅行</option>
+      <option value="2">グルメ</option>
+      <option value="3">映画・ドラマ</option>
+      <option value="4">ミュージック</option>
+      <option value="5">アニメ</option>
+      <option value="6">漫画</option>
+      <option value="7">ゲーム</option>
+      <option value="8">服</option>
+      <option value="9">本</option>
+    </select>
   </div>
-
+    
   <div class="field">
     <%= form.label :内容 %>
     <%= form.text_area :content, class: 'form-control' %>
