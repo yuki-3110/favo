@@ -10,8 +10,13 @@ class PicturesController < ApplicationController
   end
 
   def new
-    @picture = Picture.new
+    if params[:back]
+      @picture = Picture.new(picture_params)
+    else
+      @picture = Picture.new
+    end
   end
+  
 
   def edit
   end
@@ -61,7 +66,7 @@ class PicturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def picture_params
-      params.require(:picture).permit(:title, :content, :image, :user_id)
+      params.require(:picture).permit(:title, :content, :image, :image_cache, :user_id)
     end
 
     def ensure_correct_user

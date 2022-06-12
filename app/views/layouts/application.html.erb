@@ -10,9 +10,28 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <a class="navbar-brand">favo</a>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    
+
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <%= yield %>
+
+    <br>
+    <footer class="container-fluid mt-4 text-center  d-none d-sm-block" style="background-color: #e3f2fd;">
+      <div class="container p-2">© 2022 みんなのお気に入り投稿サイト</div>
+    </footer>
+    
   </body>
 </html>
+

@@ -11,19 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :タイトル %>
-    <%= form.text_field :title %>
+  <div class="actions my-2">
+  <select class="form-select" aria-label="Default select example">
+    <option selected>お気に入りジャンル</option>
+    <option value="1">旅行</option>
+    <option value="2">グルメ</option>
+    <option value="3">映画・ドラマ</option>
+    <option value="4">ミュージック</option>
+    <option value="5">アニメ</option>
+    <option value="6">漫画</option>
+    <option value="7">ゲーム</option>
+    <option value="8">服</option>
+    <option value="9">本</option>
+  </select>
   </div>
 
   <div class="field">
     <%= form.label :内容 %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <br>
+  <div class="field">
+    <%= form.label :image %>
+    <%= image_tag(picture.image.url) if picture.image && picture.image.url %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache, class: 'form-control' %>
   </div>
+
+  <div class="actions mt-5">
+    <%= form.submit "投稿する", class: 'btn btn-block btn-primary btn-sm' %>
+  </div>
+  
 <% end %>
 
+<br>
 <%= link_to "投稿一覧画面にもどる", pictures_path %>

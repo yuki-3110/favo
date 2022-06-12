@@ -1,28 +1,36 @@
-<h1>アカウント登録</h1>
+<div class="container">
 
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
-    <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+  <br>
+  <h4>アカウント登録</h4>
 
-<%= form_with(model: @user, local: true) do |f| %>  
-  <%= f.label :名前 %>
-  <%= f.text_field :name %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <%= f.label :メールアドレス %>
-  <%= f.email_field :email %>
+  <%= form_with(model: @user, local: true) do |f| %>  
+    <%= f.label :名前 %>
+    <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :パスワード %>
-  <%= f.password_field :password %>
+    <%= f.label :メールアドレス %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :パスワード再確認 %>
-  <%= f.password_field :password_confirmation %>
+    <%= f.label :パスワード %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.submit "アカウント登録" %>
-<% end %>
+    <%= f.label :パスワード再確認 %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <div class="actions mt-5">
+      <%= f.submit "アカウント登録", class: 'btn btn-block btn-primary btn-sm' %>
+    </div>
+
+  <% end %>
+
+</div>

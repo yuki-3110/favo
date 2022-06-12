@@ -1,22 +1,34 @@
-<p>
-  <strong>タイトル</strong>
-  <%= @picture.title %>
-</p>
+<div class="container">
 
-<p>
-  <strong>内容</strong>
-  <%= @picture.content %>
-</p>
+  <div class="card card-body mt-5">
+    <p>
+      <strong>タイトル</strong>
+      <%= @picture.title %>
+    </p>
 
-<p>
-  <strong>画像</strong>
-  <%= @picture.image %>
-</p>
+    <p>
+      <strong>内容</strong>
+      <%= @picture.content %>
+    </p>
 
-<p>
-  <strong>ユーザー名</strong>
-  <%= @picture.user_id %>
-</p>
+    <p>
+      <strong>画像</strong>
+      <%= image_tag @picture.image.url if @picture.image? %>
+    </p>
 
-<%= link_to '編集', edit_picture_path(@picture) %> |
-<%= link_to '戻る', pictures_path %>
+    <p>
+      <strong>ユーザー名</strong>
+      <%= @picture.user_id %>
+    </p>
+  </div>
+
+  <br>
+  <%= link_to '戻る', pictures_path %>
+
+  <% if @picture.user == current_user %>
+    <%= link_to '編集', edit_picture_path(@picture) %> 
+  <% else %> 
+    <td></td>
+  <% end %>
+
+</div>
