@@ -3,9 +3,7 @@
   <% @pictures.each do |picture| %>
     <div class="card mt-5">
       <div class="card-body" >
-        <%= picture .user.name %>
-        <br>
-        <%= picture.category %>
+        <%= picture .user.name %> <%= picture.category %>
         <br>
         <%= picture.content %>
         <br>
